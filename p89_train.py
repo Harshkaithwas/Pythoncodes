@@ -18,14 +18,16 @@ class train:
             else:
                   print("bookings are full thanks")
 
-      def cancleTicket(self, seat):#pending
-            
-            pass
+      def cancleTicket(self):#pending
+            print(f"Your ticket has been canceled is : {self.seats}")
+            self.seats = self.seats +1
 
 
-interCity = train("InterCity Exoress :  140123", 90, 2)
+interCity = train("InterCity Exoress :  140123", 90, 10)
 interCity.getStatus()
 interCity.fareInfo()
 interCity.bookTicket()
 interCity.bookTicket()
+interCity.getStatus()
+interCity.cancleTicket()
 interCity.getStatus()
