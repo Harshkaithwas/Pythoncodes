@@ -9,7 +9,9 @@ import random
 import os.path
 
 rndm=[]
-
+TO= "Receiver Email Address"
+FROM = "Your Email address"
+PASSWORD = "Enter your pass"
 
 
 engine = pyttsx3.init('sapi5')
@@ -55,8 +57,8 @@ def sendEmail(to, content):
       server = smtplib.SMTP('smtp.gmail.com',587)
       server.ehlo()
       server.starttls()
-      server.login("mail@gmail.com","password")
-      server.sendmail("mail@gmail.com",to,content)
+      server.login(FROM,PASSWORD)
+      server.sendmail(FORM,to,content)
 
 
 
@@ -103,7 +105,7 @@ if __name__ == '__main__':
                   try:
                         speak("Whats the message")
                         content = takeCommand()
-                        to = "mail@gmail.com"
+                        to = TO
                         sendEmail(to, content)
                         speak("your email has been sended")
                   except Exception as e:
