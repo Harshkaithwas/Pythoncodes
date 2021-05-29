@@ -5,6 +5,12 @@ import wikipedia
 import webbrowser
 import os 
 import smtplib
+import random
+import os.path
+
+rndm=[]
+
+
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -49,18 +55,20 @@ def sendEmail(to, content):
       server = smtplib.SMTP('smtp.gmail.com',587)
       server.ehlo()
       server.starttls()
-      server.login("your_mail@gmail.com","your_pass")
-      server.sendmail("your_mail@gmail.com",to,content)
+      server.login("mail@gmail.com","passwoed")
+      server.sendmail("mail@gmail.com",to,content)
 
+
+
+      
 
 
 
 if __name__ == '__main__':
       wishMe()
       while(True):
-            query = takeCommand().lower()
             
-            
+            query = str(takeCommand()).lower()   
             
         # logics
             if "wikipedia" in query:
@@ -72,34 +80,34 @@ if __name__ == '__main__':
                   speak(results)
             elif "youtube" in query:
                   webbrowser.open("youtube.com")      
-            elif "open google" in query:
+            elif "google" in query:
                   webbrowser.open("google.com")
-            elif "open my blog" in query:
+            elif "my blog" in query:
                   webbrowser.open("techharsh.co")
-            elif "play song" in query:
-                  music_dir = 'C:\\Users\\rc261\\Desktop\\New folder'
+            elif "songs" in query:
+                  music_dir ='C:\\Users\\rc261\\Desktop\\New folder\\Sounds'
+                  rndm= random.randint(1,100)
                   songs = os.listdir(music_dir)
                   print(songs)
-                  os.startfile(os.path.join(music_dir,songs[1]))
+                  os.startfile(os.path.join(music_dir,songs[rndm]))
             elif "the time" in query:
                   strTime = datetime.datetime.now().strftime("%H:%M:%S")
                   print(strTime)
                   speak(f"sir, the time is :{strTime}")
-            elif "luster" in query:
+            elif "jarvis" in query:
                   speak("what can i do for you my master ")
-            elif "open VS code" in query:
+            elif "open code" in query:
                   codePath = "C:\\Users\\rc261\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
                   os.startfile(codePath)
-            elif "send email to harsh" in query:
+            elif "mail " in query:
                   try:
                         speak("Whats the message")
                         content = takeCommand()
-                        to = "recever mail@gmail.com"
+                        to = "mail@gmail.com"
                         sendEmail(to, content)
                         speak("your email has been sended")
                   except Exception as e:
                         speak("please retry ")
-            else:
-                  exit()
+            
                         
  
